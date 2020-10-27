@@ -18,19 +18,3 @@
   one to the last. Code this implementation in Python.
 """
 
-from __future__ import annotations
-
-
-def main():
-    print("")
-    print("3. Direct infix evaluator ")
-
-    print("")
-    print("10. ")
-
-    print("")
-    print("27. ")
-
-
-if __name__ == '__main__':
-    main()
