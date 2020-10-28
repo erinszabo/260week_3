@@ -97,5 +97,3 @@ def infix_eval(orig):
     sol = postfix_eval(prob)
     return sol
 
-
-print(infix_eval("5 + 3 * ( 2 - 1 )"))

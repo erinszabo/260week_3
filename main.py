@@ -17,15 +17,16 @@
   commonly called back). The head reference also contains two references, one to the first node in the linked list and
   one to the last. Code this implementation in Python.
 """
-import chap_4exercises as c
+import prob_3 as a
+import prob_10 as b
 
 
 def main():
     print("")
     print("3. Direct infix evaluator ")
-    print(f" 5 + 3 * ( 2 - 1 ) = {c.infix_eval('5 + 3 * ( 2 - 1 )')}")
-    print(f" 5 + 3 * ( 0 - 1 ) = {c.infix_eval('5 + 3 * ( 0 - 1 )')}")
-    print(f" 9 + 3 * ( 2 - 1 ) = {c.infix_eval('9 + 3 * ( 2 - 1 )')}")
+    print(f" 5 + 3 * ( 2 - 1 ) = {a.infix_eval('5 + 3 * ( 2 - 1 )')}")
+    print(f" 5 + 3 * ( 0 - 1 ) = {a.infix_eval('5 + 3 * ( 0 - 1 )')}")
+    print(f" 9 + 3 * ( 2 - 1 ) = {a.infix_eval('9 + 3 * ( 2 - 1 )')}")
 
 
     print("")
