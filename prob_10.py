@@ -21,11 +21,12 @@ class Queue:  # a line, obviously
     def size(self):
         return len(self.items)
 
-    def contents(self):       # not subscriptable, need a different way to return all elements in Queue
+    def contents(self):  # not subscriptable, need a different way to return all elements in Queue
         return self.items
 
 
 slst = random.sample(range(100, 1000), 15)
+
 
 # print(slst)
 
@@ -41,8 +42,9 @@ def randix(lst):
         main_bin.enqueue(i)
     print(f"main_bin start = {main_bin.contents()}")
     print(f"size = {main_bin.size()}")
-    bin_0, bin_1, bin_2, bin_3, bin_4, bin_5, bin_6, bin_7, bin_8, bin_9 = Queue("bin_0"), Queue("bin_1"), Queue("bin_2"), Queue("bin_3"), Queue("bin_4"), Queue("bin_5"), Queue("bin_6"), Queue("bin_7"), Queue("bin_8"), Queue("bin_9")
-    # I know theres a better way to format this ^^^^ look up later
+    bin_0, bin_1, bin_2, bin_3, bin_4, bin_5, bin_6, bin_7, bin_8, bin_9 \
+        = Queue("bin_0"), Queue("bin_1"), Queue("bin_2"), Queue("bin_3"), Queue("bin_4"), \
+        Queue("bin_5"), Queue("bin_6"), Queue("bin_7"), Queue("bin_8"), Queue("bin_9")
     small_bins = [bin_0, bin_1, bin_2, bin_3, bin_4, bin_5, bin_6, bin_7, bin_8, bin_9]
     while main_bin.size() > 0:
         num = main_bin.dequeue()
@@ -71,27 +73,21 @@ def randix(lst):
             bin_8.enqueue(num)
         else:
             bin_9.enqueue(num)
+            # ^^ I did all this before realizing I should make a small_bins list ^^
     print(main_bin.contents())
-    print(bin_0.contents(), bin_1.contents(), bin_2.contents(), bin_3.contents(), bin_4.contents(), bin_5.contents(), bin_6.contents(), bin_7.contents(), bin_8.contents(), bin_9.contents())
+    print(bin_0.contents(), bin_1.contents(), bin_2.contents(), bin_3.contents(), bin_4.contents(),
+          bin_5.contents(), bin_6.contents(), bin_7.contents(), bin_8.contents(), bin_9.contents())
     # realizing I should have made a bin class with a value characteristic, but oh well next time
-    main_bin.enqueue(bin_0.contents()[:])
-    main_bin.enqueue(bin_1.contents()[:])
-    main_bin.enqueue(bin_2.contents()[:])
-    main_bin.enqueue(bin_3.contents()[:])
-    main_bin.enqueue(bin_4.contents()[:])
-    main_bin.enqueue(bin_5.contents()[:])
-    main_bin.enqueue(bin_6.contents()[:])
-    main_bin.enqueue(bin_7.contents()[:])
-    main_bin.enqueue(bin_8.contents()[:])
-    main_bin.enqueue(bin_9.contents()[:])
-    # ^^ I want to enqueue each of the elements (ints) of the contents list into main_bin ^^
-    # this is all for sorting first digit only so far
     for i in small_bins:
+        for j in i.contents():
+            main_bin.enqueue(j)
+
+    for i in small_bins:  # empty each small bin
         while i.size() > 0:
             i.dequeue()
         print(f"{i.name()} contains: {i.contents()}")
 
-    return f"main bin contents: {main_bin.contents()}"
+    return f"main_bin contents: {main_bin.contents()}"
 
 
 print(randix(slst))
