@@ -17,21 +17,33 @@ class Queue:  # a line, obviously
     def size(self):
         return len(self.items)
 
+    # def __str__(self):        not subscriptable, need a different way to return all elements in Queue
+    #    return self[:]
+
 
 slst = random.sample(range(100, 1000), 15)
+
 # print(slst)
+
+
+# print(int("321"[len("321") - 1]))     ones place
+# print(int("321"[len("321") - 2]))     tens place
+# print(int("321"[len("321") - 3]))     hundreds place
 
 
 def randix(lst):
     main_bin = Queue()
-    main_bin.enqueue(lst)
+    for i in lst:
+        main_bin.enqueue(i)
+    print(f"main_bin start = {main_bin}")
+    print(f"size = {main_bin.size()}")
     bin_0, bin_1, bin_2, bin_3, bin_4, bin_5, bin_6, bin_7, bin_8, bin_9 = Queue(), Queue(), Queue(), Queue(), Queue(), Queue(), Queue(), Queue(), Queue(), Queue()
     # I know theres a better way to format this ^^^^ look up later
     while main_bin.size() > 0:
         num = main_bin.dequeue()
-        print(num)
+        print(f"num = {num}")
         num_s = str(num)
-        print(num_s)
+        print(f"num_s = {num_s}")
         ones_place = int(num_s[len(num_s) - 1])
         # ^^^ issue right here ^^^
         print(ones_place)
