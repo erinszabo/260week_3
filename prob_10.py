@@ -69,6 +69,7 @@ def randix(lst):
     main_bin.enqueue(bin_8[:])
     main_bin.enqueue(bin_9[:])
     print(main_bin)
+    # this is all for sorting first digit only so far
 
     return main_bin
 
