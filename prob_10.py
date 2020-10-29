@@ -54,47 +54,37 @@ def randix(lst):
     small_bins = [bin_0, bin_1, bin_2, bin_3, bin_4, bin_5, bin_6, bin_7, bin_8, bin_9]
 
     while ordered is not True:
-        if main_bin.size() <= 0:  # dump small bins into main_bin
-            for i in small_bins:
-                for j in i.contents():
-                    main_bin.enqueue(j)
+        num = main_bin.dequeue()
+        # print(f"num = {num}")
+        num_s = str(num)
+        # print(f"num_s = {num_s}")
+        ones_place = int(num_s[len(num_s) - 1])
+        # print(ones_place)
+        tens_place = int(num_s[len(num_s) - 2])
+        # print(tens_place)
+        hunds_place = int(num_s[len(num_s) - 3])
+        # print(hunds_place)
 
-            for i in small_bins:  # empty each small bin
-                while i.size() > 0:
-                    i.dequeue()
-                print(f"{i.name()} contains: {i.contents()}")
+        """
+        if ones_done is False:
+            place = ones_place
+        elif tens_done is False:
+            place = tens_place
+        elif hunds_done is False:
+            place = hunds_place
+        else:
+            ordered is True
+        """
 
-            num = main_bin.dequeue()
-            # print(f"num = {num}")
-            num_s = str(num)
-            # print(f"num_s = {num_s}")
-            ones_place = int(num_s[len(num_s) - 1])
-            # print(ones_place)
-            tens_place = int(num_s[len(num_s) - 2])
-            # print(tens_place)
-            hunds_place = int(num_s[len(num_s) - 3])
-            # print(hunds_place)
-
-            if ones_done is False:
-                place = ones_place
-            elif tens_done is False:
-                place = tens_place
-            elif hunds_done is False:
-                place = hunds_place
-            else:
-                ordered is True
-
-            if count == 1:  # move on to the next place for all nums
-                place = tens_place
-                ones_done = True
-            elif count == 10:
-                place = hunds_place
-                tens_done = True
-            elif count == 100:
-                hunds_done = True
-                ordered = True
-
-
+        if count == 1:  # move on to the next place for all nums
+            place = tens_place
+            ones_done = True
+        elif count == 10:
+            place = hunds_place
+            tens_done = True
+        elif count == 100:
+            hunds_done = True
+            ordered = True
 
         if place == 0:
             bin_0.enqueue(num)
@@ -122,12 +112,21 @@ def randix(lst):
               bin_5.contents(), bin_6.contents(), bin_7.contents(), bin_8.contents(), bin_9.contents())
         # realizing I should have made a bin class with a value characteristic, but oh well next time
 
-        print(f"{count}'s done; main_bin contents: {main_bin.contents()}")
-        print("")
+        if main_bin.size() <= 0:  # dump small bins into main_bin
+            for i in small_bins:
+                for j in i.contents():
+                    main_bin.enqueue(j)
+
+        for i in small_bins:  # empty each small bin
+            while i.size() > 0:
+                i.dequeue()
+            print(f"{i.name()} contains: {i.contents()}")
+
+        count = count * 10
         if count == 0:
             count = 1
-        else:
-            count = count * 10
+        print(f"{count}'s done; main_bin contents: {main_bin.contents()}")
+        print("")
 
     return f"main_bin contents: {main_bin.contents()}"
 
